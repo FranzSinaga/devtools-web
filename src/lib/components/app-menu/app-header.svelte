@@ -5,7 +5,7 @@
 	import * as Sidebar from '../ui/sidebar/index';
 
 	type ThemeValue = 'dark' | 'light' | 'system';
-	let value = $state<ThemeValue>(userPrefersMode.current);
+	let value = $state<ThemeValue>(userPrefersMode.current ?? 'system');
 
 	const themes: {
 		label: string;
@@ -31,7 +31,7 @@
 </script>
 
 <header
-	class="flex h-14.5 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-14.5"
+	class="flex h-14.5 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-14.5 theme-transition"
 >
 	<div class="flex w-full items-center justify-between gap-2 px-4">
 		<div class="flex items-center gap-2">

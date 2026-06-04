@@ -6,27 +6,35 @@
 	import AppHeader from '$lib/components/app-menu/app-header.svelte';
 
 	import { ModeWatcher } from 'mode-watcher';
+	import { dev } from '$app/environment';
+	import { QueryClientProvider } from '@tanstack/svelte-query';
 
-	let { children } = $props();
+	let { children, data } = $props();
 </script>
 
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>
 
-<ModeWatcher defaultMode="system" modeStorageKey="app-mode" disableHeadScriptInjection={true} />
+<ModeWatcher modeStorageKey="app-mode" disableHeadScriptInjection={true} />
 <Sidebar.Provider
 	style="--sidebar-width: calc(var(--spacing) * 72); --header-height: calc(var(--spacing) * 12);"
 >
 	<AppSidebar variant="sidebar" />
 	<Sidebar.Inset>
-		<AppHeader />
-		<div class="flex flex-1 flex-col gap-4 p-4 pt-0">
-			<div class="grid auto-rows-min gap-4 md:grid-cols-3">
-				<div class="aspect-video rounded-xl bg-muted/50"></div>
-				<div class="aspect-video rounded-xl bg-muted/50"></div>
-				<div class="aspect-video rounded-xl bg-muted/50"></div>
-			</div>
-			<div class="min-h-screen flex-1 rounded-xl bg-muted/50 md:min-h-min"></div>
+		<div class="flex h-screen flex-col">
+			<AppHeader />
+			<QueryClientProvider client={data.queryClient}>
+				{@render children()}
+
+				{#if dev}
+					{#await import('@tanstack/svelte-query-devtools') then { SvelteQueryDevtools }}
+						<SvelteQueryDevtools buttonPosition="bottom-right" />
+					{/await}
+				{/if}
+			</QueryClientProvider>
+
+			<div
+				class="flex-1 shrink-0 border-y bg-[repeating-linear-gradient(315deg,var(--pattern-fg)_0,var(--pattern-fg)_1px,transparent_0,transparent_50%)] bg-size-[10px_10px] bg-fixed [--pattern-fg:var(--color-black)]/5 md:col-span-2 md:block lg:col-span-4 dark:[--pattern-fg:var(--color-white)]/10"
+			></div>
 		</div>
-		{@render children()}
 	</Sidebar.Inset>
 </Sidebar.Provider>
