@@ -8,6 +8,7 @@
 	import { ModeWatcher } from 'mode-watcher';
 	import { dev } from '$app/environment';
 	import { QueryClientProvider } from '@tanstack/svelte-query';
+	import { Toaster } from '$lib/components/ui/sonner';
 
 	let { children, data } = $props();
 </script>
@@ -15,6 +16,7 @@
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>
 
 <ModeWatcher modeStorageKey="app-mode" disableHeadScriptInjection={true} />
+<Toaster position="bottom-center" />
 <Sidebar.Provider
 	style="--sidebar-width: calc(var(--spacing) * 72); --header-height: calc(var(--spacing) * 12);"
 >

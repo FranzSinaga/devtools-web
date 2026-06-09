@@ -1,10 +1,17 @@
 <script lang="ts">
 	import * as Sidebar from '$lib/components/ui/sidebar/index.js';
 	import { HugeiconsIcon, type IconSvgElement } from '@hugeicons/svelte';
-	let { items }: { items: { title: string; url: string; icon?: IconSvgElement }[] } = $props();
+	import type { WithoutChildren } from 'bits-ui';
+	import type { ComponentProps } from 'svelte';
+	let {
+		items,
+		...restProps
+	}: { items: { title: string; url: string; icon: IconSvgElement }[] } & WithoutChildren<
+		ComponentProps<typeof Sidebar.Group>
+	> = $props();
 </script>
 
-<Sidebar.Group>
+<Sidebar.Group {...restProps}>
 	<Sidebar.GroupContent class="flex flex-col gap-2">
 		<!-- <Sidebar.Menu>
 			<Sidebar.MenuItem class="flex items-center gap-2">
@@ -29,10 +36,13 @@
 			{#each items as item (item.title)}
 				<Sidebar.MenuItem>
 					<Sidebar.MenuButton tooltipContent={item.title}>
-						{#if item.icon}
-							<HugeiconsIcon icon={item.icon} />
-						{/if}
-						<span>{item.title}</span>
+						{#snippet child({ props })}
+							<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
+							<a href={item.url} {...props}>
+								<HugeiconsIcon icon={item.icon} />
+								<span>{item.title}</span>
+							</a>
+						{/snippet}
 					</Sidebar.MenuButton>
 				</Sidebar.MenuItem>
 			{/each}
