@@ -1,50 +1,89 @@
 <script lang="ts">
 	import * as Sidebar from '$lib/components/ui/sidebar/index.js';
 	import { HugeiconsIcon, type IconSvgElement } from '@hugeicons/svelte';
-	import type { WithoutChildren } from 'bits-ui';
-	import type { ComponentProps } from 'svelte';
+	import * as Collapsible from '../ui/collapsible/index';
+	import { ChevronRight } from '@hugeicons/core-free-icons';
+
 	let {
 		items,
 		...restProps
-	}: { items: { title: string; url: string; icon: IconSvgElement }[] } & WithoutChildren<
-		ComponentProps<typeof Sidebar.Group>
-	> = $props();
+	}: {
+		items: {
+			title: string;
+			url: string;
+			icon?: IconSvgElement;
+			isActive?: boolean;
+			items?: {
+				title: string;
+				url: string;
+				icon?: IconSvgElement;
+			}[];
+		}[];
+	} = $props();
 </script>
 
 <Sidebar.Group {...restProps}>
 	<Sidebar.GroupContent class="flex flex-col gap-2">
-		<!-- <Sidebar.Menu>
-			<Sidebar.MenuItem class="flex items-center gap-2">
-				<Sidebar.MenuButton
-					class="min-w-8 bg-primary text-primary-foreground duration-200 ease-linear hover:bg-primary/90 hover:text-primary-foreground active:bg-primary/90 active:text-primary-foreground"
-					tooltipContent="Quick create"
-				>
-					<HugeiconsIcon icon={CirclePlus} />
-					<span>Quick Create</span>
-				</Sidebar.MenuButton>
-				<Button
-					size="icon"
-					class="size-8 group-data-[collapsible=icon]:opacity-0"
-					variant="outline"
-				>
-					<HugeiconsIcon icon={MailIcon} />
-					<span class="sr-only">Inbox</span>
-				</Button>
-			</Sidebar.MenuItem>
-		</Sidebar.Menu> -->
 		<Sidebar.Menu>
 			{#each items as item (item.title)}
-				<Sidebar.MenuItem>
-					<Sidebar.MenuButton tooltipContent={item.title}>
+				{#if item.items}
+					<Collapsible.Root open={item.isActive} class="group/collapsible">
 						{#snippet child({ props })}
-							<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
-							<a href={item.url} {...props}>
-								<HugeiconsIcon icon={item.icon} />
-								<span>{item.title}</span>
-							</a>
+							<Sidebar.MenuItem {...props}>
+								<Collapsible.Trigger>
+									{#snippet child({ props })}
+										<Sidebar.MenuButton {...props} tooltipContent={item.title}>
+											{#if item.icon}
+												<HugeiconsIcon icon={item.icon} />
+											{/if}
+											<span>{item.title}</span>
+											<HugeiconsIcon
+												icon={ChevronRight}
+												class="ms-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90"
+											/>
+										</Sidebar.MenuButton>
+									{/snippet}
+								</Collapsible.Trigger>
+								<Collapsible.Content
+									class="overflow-hidden data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+								>
+									<Sidebar.MenuSub>
+										{#each item.items ?? [] as subItem (subItem.title)}
+											<Sidebar.MenuSubItem>
+												<Sidebar.MenuSubButton>
+													{#snippet child({ props })}
+														<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
+														<a href={subItem.url} {...props}>
+															<span class="flex items-center gap-2">
+																{#if subItem.icon}
+																	<HugeiconsIcon icon={subItem.icon} size={15} />
+																{/if}{subItem.title}
+															</span>
+														</a>
+													{/snippet}
+												</Sidebar.MenuSubButton>
+											</Sidebar.MenuSubItem>
+										{/each}
+									</Sidebar.MenuSub>
+								</Collapsible.Content>
+							</Sidebar.MenuItem>
 						{/snippet}
-					</Sidebar.MenuButton>
-				</Sidebar.MenuItem>
+					</Collapsible.Root>
+				{:else}
+					<Sidebar.MenuItem>
+						<Sidebar.MenuButton tooltipContent={item.title}>
+							{#snippet child({ props })}
+								<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
+								<a href={item.url} {...props}>
+									{#if item.icon}
+										<HugeiconsIcon icon={item.icon} />
+									{/if}
+									<span>{item.title}</span>
+								</a>
+							{/snippet}
+						</Sidebar.MenuButton>
+					</Sidebar.MenuItem>
+				{/if}
 			{/each}
 		</Sidebar.Menu>
 	</Sidebar.GroupContent>

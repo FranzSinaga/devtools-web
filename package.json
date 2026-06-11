@@ -53,6 +53,7 @@
 		"@tanstack/svelte-query-devtools": "^6.1.34",
 		"dayjs": "^1.11.21",
 		"mode-watcher": "^1.1.0",
+		"svelte-qrcode": "^1.0.1",
 		"uuid": "^14.0.0"
 	}
 }

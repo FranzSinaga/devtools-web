@@ -1,13 +1,4 @@
-import {
-	ChartIcon,
-	DashboardSquareIcon,
-	FolderIcon,
-	HelpSquareIcon,
-	ListTreeIcon,
-	SearchIcon,
-	SettingsIcon,
-	UserIcon
-} from '@hugeicons/core-free-icons';
+import { DashboardSquareIcon, EngineIcon, IdIcon, SettingsIcon } from '@hugeicons/core-free-icons';
 
 export const menuItems = {
 	navMain: [
@@ -17,24 +8,16 @@ export const menuItems = {
 			icon: DashboardSquareIcon
 		},
 		{
-			title: 'UUID Generator',
-			url: '/uuid-generator',
-			icon: ListTreeIcon
-		},
-		{
-			title: 'Analytics',
+			title: 'Generator',
 			url: '#',
-			icon: ChartIcon
-		},
-		{
-			title: 'Projects',
-			url: '#',
-			icon: FolderIcon
-		},
-		{
-			title: 'Team',
-			url: '#',
-			icon: UserIcon
+			icon: EngineIcon,
+			items: [
+				{
+					title: 'UUID Generator',
+					url: '/uuid-generator',
+					icon: IdIcon
+				}
+			]
 		}
 	],
 	navSecondary: [
@@ -42,16 +25,6 @@ export const menuItems = {
 			title: 'Settings',
 			url: '#',
 			icon: SettingsIcon
-		},
-		{
-			title: 'Get Help',
-			url: '#',
-			icon: HelpSquareIcon
-		},
-		{
-			title: 'Search',
-			url: '#',
-			icon: SearchIcon
 		}
 	]
 };

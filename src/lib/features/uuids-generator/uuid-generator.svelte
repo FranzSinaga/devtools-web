@@ -6,10 +6,10 @@
 	import { createMutation } from '@tanstack/svelte-query';
 	import { toast } from 'svelte-sonner';
 	import { fade } from 'svelte/transition';
-	import { v4 as uuidv4, v7 as uudiv7 } from 'uuid';
+	import { v1 as uuidv1, v4 as uuidv4, v7 as uudiv7 } from 'uuid';
 
 	type Props = {
-		version: 'v4' | 'v7';
+		version: 'v1' | 'v4' | 'v7';
 	};
 	let { version = 'v4' }: Props = $props();
 
@@ -18,6 +18,9 @@
 
 	function generateUuids(qty: number) {
 		switch (version) {
+			case 'v1':
+				uuids = Array.from({ length: qty }, () => uuidv1());
+				break;
 			case 'v4':
 				uuids = Array.from({ length: qty }, () => uuidv4());
 				break;
@@ -59,7 +62,10 @@
 </script>
 
 <p class="pb-4 text-muted-foreground">
-	{#if version === 'v4'}
+	{#if version === 'v1'}
+		A Version 1 UUID is a universally unique identifier that is generated using a timestamp and the
+		MAC address of the computer on which it was generated.
+	{:else if version === 'v4'}
 		A Version 4 UUID is a universally unique identifier that is generated using random numbers. The
 		Version 4 UUIDs produced by this site were generated using a secure random number generator.
 	{:else if version === 'v7'}

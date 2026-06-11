@@ -10,6 +10,7 @@
 	import { QueryClientProvider } from '@tanstack/svelte-query';
 	import { Toaster } from '$lib/components/ui/sonner';
 	import ScreenIndicator from '$lib/components/screen-indicator.svelte';
+	import * as Tooltip from '$lib/components/ui/tooltip/index.js';
 
 	let { children, data } = $props();
 </script>
@@ -26,7 +27,9 @@
 		<div class="flex h-screen flex-col">
 			<AppHeader />
 			<QueryClientProvider client={data.queryClient}>
-				{@render children()}
+				<Tooltip.Provider>
+					{@render children()}
+				</Tooltip.Provider>
 
 				{#if dev}
 					<ScreenIndicator />
