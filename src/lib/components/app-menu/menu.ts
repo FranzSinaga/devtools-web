@@ -13,7 +13,7 @@ export const menuItems = {
 	navMain: [
 		{
 			title: 'Dashboard',
-			url: '#',
+			url: '/',
 			icon: DashboardSquareIcon
 		},
 		{

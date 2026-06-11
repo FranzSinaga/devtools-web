@@ -9,6 +9,7 @@
 	import { dev } from '$app/environment';
 	import { QueryClientProvider } from '@tanstack/svelte-query';
 	import { Toaster } from '$lib/components/ui/sonner';
+	import ScreenIndicator from '$lib/components/screen-indicator.svelte';
 
 	let { children, data } = $props();
 </script>
@@ -28,6 +29,7 @@
 				{@render children()}
 
 				{#if dev}
+					<ScreenIndicator />
 					{#await import('@tanstack/svelte-query-devtools') then { SvelteQueryDevtools }}
 						<SvelteQueryDevtools buttonPosition="bottom-right" />
 					{/await}
