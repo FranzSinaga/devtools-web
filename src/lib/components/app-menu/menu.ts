@@ -1,6 +1,7 @@
 import {
 	DashboardSquareIcon,
 	EngineIcon,
+	FingerPrintIcon,
 	IdIcon,
 	PasswordValidationIcon,
 	Qr
@@ -32,6 +33,11 @@ export const menuItems = {
 					title: 'Password Generator',
 					url: '/password-generator',
 					icon: PasswordValidationIcon
+				},
+				{
+					title: 'Hash Generator',
+					url: '/hash-generator',
+					icon: FingerPrintIcon
 				}
 			]
 		}

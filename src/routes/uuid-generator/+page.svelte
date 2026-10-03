@@ -2,7 +2,7 @@
 	import Container from '$lib/components/container.svelte';
 	import Title from '$lib/components/title.svelte';
 	import * as Tabs from '$lib/components/ui/tabs/index';
-	import UuidGenerator from '$lib/features/uuids-generator/uuid-generator.svelte';
+	import UuidGenerator from '$lib/features/generator/uuid-generator/uuid-generator.svelte';
 </script>
 
 <Container class="space-y-2">

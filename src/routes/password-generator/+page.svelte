@@ -1,7 +1,7 @@
 <script>
 	import Container from '$lib/components/container.svelte';
 	import Title from '$lib/components/title.svelte';
-	import PasswordGenerator from '$lib/features/password-generator/password-generator.svelte';
+	import PasswordGenerator from '$lib/features/generator/password-generator/password-generator.svelte';
 </script>
 
 <Container class="space-y-2">
