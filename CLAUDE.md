@@ -16,6 +16,10 @@ pnpm format         # prettier --write
 
 There is no test runner configured.
 
+## Git workflow
+
+Work directly on the currently checked-out branch. No new worktrees (including EnterWorktree), branches, commits, or pushes unless the user explicitly asks; leave changes uncommitted for the user to review.
+
 ## Stack
 
 SvelteKit 2 + Svelte 5 (runes forced on for all non-`node_modules` files), Tailwind CSS v4 (configured in `src/routes/layout.css`, no `tailwind.config`), shadcn-svelte (`bits-ui`), TanStack Svelte Query, Hugeicons. Formatting: tabs, single quotes, no trailing commas, width 100.
