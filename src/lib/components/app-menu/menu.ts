@@ -1,4 +1,10 @@
-import { DashboardSquareIcon, EngineIcon, IdIcon, Qr } from '@hugeicons/core-free-icons';
+import {
+	DashboardSquareIcon,
+	EngineIcon,
+	IdIcon,
+	PasswordValidationIcon,
+	Qr
+} from '@hugeicons/core-free-icons';
 
 export const menuItems = {
 	navMain: [
@@ -21,6 +27,11 @@ export const menuItems = {
 					title: 'QR Generator',
 					url: '/qr-generator',
 					icon: Qr
+				},
+				{
+					title: 'Password Generator',
+					url: '/password-generator',
+					icon: PasswordValidationIcon
 				}
 			]
 		}
