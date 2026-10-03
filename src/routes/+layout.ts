@@ -5,10 +5,6 @@ import type { LayoutLoad } from './$types';
 
 export const ssr = false;
 
-export const csr = true;
-
-export const prerender = false;
-
 export const load: LayoutLoad = () => {
 	const queryClient = new QueryClient({
 		defaultOptions: {

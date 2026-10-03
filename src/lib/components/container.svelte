@@ -9,6 +9,6 @@
 	let { class: className, children }: Props = $props();
 </script>
 
-<div class={cn('p-4 2xl:w-4xl 2xl:mx-auto', className)}>
+<div class={cn('p-4 2xl:mx-auto 2xl:w-4xl', className)}>
 	{@render children?.()}
 </div>

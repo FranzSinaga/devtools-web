@@ -12,7 +12,7 @@ export const getOsSummary = query(async () => {
 	const usedMem = totalMem - freeMem;
 	const info = {
 		cores: navigator.hardwareConcurrency,
-		platform: navigator.platform,
+		platform: navigator.platform
 	};
 	return {
 		cpu: {

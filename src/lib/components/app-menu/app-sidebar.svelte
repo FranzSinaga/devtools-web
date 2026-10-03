@@ -1,6 +1,5 @@
 <script lang="ts">
 	import NavMain from './nav-main.svelte';
-	import NavSecondary from './nav-secondary.svelte';
 	import * as Sidebar from '$lib/components/ui/sidebar/index.js';
 	import { resolve } from '$app/paths';
 	import type { ComponentProps } from 'svelte';
@@ -28,9 +27,5 @@
 	</Sidebar.Header>
 	<Sidebar.Content>
 		<NavMain items={data.navMain} />
-		<NavSecondary items={data.navSecondary} class="mt-auto" />
 	</Sidebar.Content>
-	<!-- <Sidebar.Footer>
-		<NavUser user={data.user} />
-	</Sidebar.Footer> -->
 </Sidebar.Root>

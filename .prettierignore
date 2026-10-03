@@ -7,3 +7,6 @@ bun.lockb
 
 # Miscellaneous
 /static/
+
+# shadcn-svelte generated
+/src/lib/components/ui/

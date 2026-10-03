@@ -14,7 +14,7 @@
 		is practically zero.
 	</p>
 
-	<div class="mx-auto 2xl:border 2xl:p-4">
+	<div class="2xl:border 2xl:p-4">
 		<Tabs.Root value="v4">
 			<Tabs.List>
 				<Tabs.Trigger value="v1">Version 1</Tabs.Trigger>

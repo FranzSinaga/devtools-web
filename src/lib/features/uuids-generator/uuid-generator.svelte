@@ -1,64 +1,30 @@
 <script lang="ts">
-	import NumberInput from '$lib/components/number-input/number-input.svelte';
 	import Button from '$lib/components/ui/button/button.svelte';
+	import NumberInput from '$lib/components/number-input/number-input.svelte';
 	import { Copy, Refresh } from '@hugeicons/core-free-icons';
 	import { HugeiconsIcon } from '@hugeicons/svelte';
-	import { createMutation } from '@tanstack/svelte-query';
 	import { toast } from 'svelte-sonner';
 	import { fade } from 'svelte/transition';
-	import { v1 as uuidv1, v4 as uuidv4, v7 as uudiv7 } from 'uuid';
+	import { v1 as uuidv1, v4 as uuidv4, v7 as uuidv7 } from 'uuid';
 
 	type Props = {
 		version: 'v1' | 'v4' | 'v7';
 	};
 	let { version = 'v4' }: Props = $props();
 
+	const MAX_QTY = 50;
 	let qty: string = $state('');
 	let uuids: string[] = $state([]);
 
 	function generateUuids(qty: number) {
-		switch (version) {
-			case 'v1':
-				uuids = Array.from({ length: qty }, () => uuidv1());
-				break;
-			case 'v4':
-				uuids = Array.from({ length: qty }, () => uuidv4());
-				break;
-			case 'v7':
-				uuids = Array.from({ length: qty }, () => uudiv7());
-				break;
-			default:
-				uuids = Array.from({ length: qty }, () => uuidv4());
-				break;
-		}
+		const gen: () => string = { v1: uuidv1, v4: uuidv4, v7: uuidv7 }[version];
+		uuids = Array.from({ length: qty }, () => gen());
 	}
 
-	/**
-	 * Copies an array of strings to the system clipboard.
-	 * @param lines - The array of strings to copy.
-	 * @param separator - The string used to join elements (defaults to a newline).
-	 * @returns A promise that resolves when the text is successfully copied.
-	 */
-	async function copyArrayToClipboard(separator: string = '\n'): Promise<void> {
-		try {
-			const textToCopy = uuids.join(separator);
-			await navigator.clipboard.writeText(textToCopy);
-			console.log('Array successfully copied to clipboard!');
-		} catch (error) {
-			console.error('Failed to copy text: ', error);
-			throw error;
-		}
+	async function copy() {
+		await navigator.clipboard.writeText(uuids.join('\n'));
+		toast.success('UUIDs successfully copied to clipboard!');
 	}
-
-	const mutation = createMutation(() => ({
-		mutationFn: async () => {
-			await copyArrayToClipboard();
-		},
-		onSuccess: () => {
-			toast.success('UUIDs successfully copied to clipboard!');
-		},
-		onError: () => {}
-	}));
 </script>
 
 <p class="pb-4 text-muted-foreground">
@@ -79,15 +45,15 @@
 	<div class="space-y-1.5">
 		<NumberInput
 			bind:value={qty}
-			max={50}
 			id="quantity"
-			handleInput={() => {
-				generateUuids(Number(qty));
-			}}
+			label="Quantity"
+			placeholder="UUID Quantity"
+			max={MAX_QTY}
+			handleInput={() => generateUuids(Number(qty))}
 		/>
-		{#if Number(qty) >= 50}
+		{#if Number(qty) >= MAX_QTY}
 			<p transition:fade={{ duration: 300 }} class="text-yellow-800">
-				Max number of quantity is 50
+				Max number of quantity is {MAX_QTY}
 			</p>
 		{/if}
 	</div>
@@ -96,20 +62,11 @@
 		<div class="flex w-full items-center justify-between">
 			<p>UUIDs</p>
 			<div class="flex gap-2">
-				<Button
-					variant="outline"
-					size="icon"
-					disabled={uuids.length <= 0 || mutation.isPending}
-					onclick={() => {
-						mutation.mutate();
-					}}
-				>
+				<Button variant="outline" size="icon" disabled={uuids.length <= 0} onclick={copy}>
 					<HugeiconsIcon icon={Copy} />
 				</Button>
 				<Button
-					onclick={() => {
-						generateUuids(Number(qty));
-					}}
+					onclick={() => generateUuids(Number(qty))}
 					variant="outline"
 					size="icon"
 					disabled={uuids.length <= 0}
