@@ -1,42 +1,39 @@
-# sv
+# devtools-web
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+A collection of small developer tools in one SvelteKit app. Generators run entirely in the browser; nothing is sent to a server.
 
-## Creating a project
+Tools: UUID, QR, password, and hash generators. See [ROADMAP.md](ROADMAP.md) for what's shipped and planned.
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Quick start
 
-```sh
-# create a new project
-npx sv create my-app
-```
-
-To recreate this project with the same configuration:
+Requires Node and pnpm (`engine-strict=true`).
 
 ```sh
-# recreate this project
-pnpm dlx sv@0.15.3 create --template minimal --types ts --add prettier eslint tailwindcss="plugins:typography,forms" --install pnpm devtools-web
+pnpm install
+pnpm dev
 ```
 
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+## Scripts
 
 ```sh
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+pnpm dev       # vite dev server
+pnpm build     # production build
+pnpm preview   # preview the production build
+pnpm check     # svelte-kit sync + svelte-check
+pnpm lint      # prettier --check + eslint
+pnpm format    # prettier --write
 ```
 
-## Building
+No test runner is configured. Deployment uses `@sveltejs/adapter-auto`; swap the adapter in `svelte.config.js` for your target.
 
-To create a production version of your app:
+## Project layout
 
-```sh
-npm run build
+```
+src/
+  routes/<tool>/+page.svelte        thin page: title, description, feature component
+  lib/features/<group>/<feature>/   feature component, logic, README.md
+  lib/components/app-menu/menu.ts   sidebar entries
+  lib/components/ui/                shadcn-svelte generated components
 ```
 
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+Stack: SvelteKit 2, Svelte 5, Tailwind CSS v4, shadcn-svelte, TanStack Svelte Query. Conventions and architecture notes live in [CLAUDE.md](CLAUDE.md).
