@@ -1,5 +1,6 @@
 node_modules
-.claude
+.claude/worktrees/
+.claude/settings.local.json
 
 # Output
 .output
