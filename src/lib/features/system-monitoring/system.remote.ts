@@ -1,7 +1,6 @@
 import os from 'node:os';
 import { query } from '$app/server';
 import { dev } from '$app/environment';
-import dayjs from 'dayjs';
 
 export const getOsSummary = query(async () => {
 	if (dev) console.log('OS Summary requested');
@@ -34,7 +33,7 @@ export const getOsSummary = query(async () => {
 			nodeVersion: process.version
 		},
 		info,
-		timestamp: dayjs(new Date().toISOString()).format('DD MMMM YYYY HH:mm:ss')
+		timestamp: formatTimestamp(new Date())
 	};
 });
 
@@ -64,4 +63,10 @@ function sampleCpu() {
 	}
 
 	return { idle, total };
+}
+
+// e.g. "04 October 2026 14:41:13"
+function formatTimestamp(d: Date) {
+	const date = d.toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' });
+	return `${date} ${d.toLocaleTimeString('en-GB')}`;
 }

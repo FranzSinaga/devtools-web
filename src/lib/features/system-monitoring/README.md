@@ -4,7 +4,7 @@ Shows CPU, memory, and OS stats of the machine running the SvelteKit server. Rou
 
 ## How it works
 
-- `getOsSummary` is a remote `query` that reads `node:os`: CPU model/cores, CPU usage (two samples of `os.cpus()` times 100 ms apart), memory total/free/used/percentage, platform, hostname, uptime, arch, Node version, plus a `dayjs`-formatted timestamp. It also reads Node's global `navigator` (`hardwareConcurrency`, `platform`).
+- `getOsSummary` is a remote `query` that reads `node:os`: CPU model/cores, CPU usage (two samples of `os.cpus()` times 100 ms apart), memory total/free/used/percentage, platform, hostname, uptime, arch, Node version, plus a timestamp formatted with `toLocaleDateString`/`toLocaleTimeString` (`en-GB`, e.g. `04 October 2026 14:41:13`). It also reads Node's global `navigator` (`hardwareConcurrency`, `platform`).
 - `summaryQueries.get()` polls it every 2 s, including when the tab is in the background.
 - The component dumps the response as JSON.
 
