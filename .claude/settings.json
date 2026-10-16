@@ -1,5 +1,16 @@
 {
 	"worktree": {
 		"bgIsolation": "none"
+	},
+	"extraKnownMarketplaces": {
+		"karpathy-skills": {
+			"source": {
+				"source": "github",
+				"repo": "multica-ai/andrej-karpathy-skills"
+			}
+		}
+	},
+	"enabledPlugins": {
+		"andrej-karpathy-skills@karpathy-skills": true
 	}
 }
