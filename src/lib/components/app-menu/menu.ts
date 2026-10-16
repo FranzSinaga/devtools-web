@@ -3,6 +3,7 @@ import {
 	EngineIcon,
 	FingerPrintIcon,
 	IdIcon,
+	ParagraphIcon,
 	PasswordValidationIcon,
 	Qr
 } from '@hugeicons/core-free-icons';
@@ -38,6 +39,11 @@ export const menuItems = {
 					title: 'Hash Generator',
 					url: '/hash-generator',
 					icon: FingerPrintIcon
+				},
+				{
+					title: 'Lorem Ipsum Generator',
+					url: '/lorem-ipsum',
+					icon: ParagraphIcon
 				}
 			]
 		}
