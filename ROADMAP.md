@@ -10,7 +10,7 @@
 - [x] QR Generator
 - [x] Password Generator
 - [x] Hash Generator (SHA-1/256/384/512)
-- [ ] MD5 in Hash Generator (needs a library, not in Web Crypto)
+- [x] MD5 in Hash Generator
 - [x] Lorem Ipsum Generator
 - [ ] Fake Data (names, emails, addresses)
 - [ ] ULID / NanoID (tab in UUID Generator)
