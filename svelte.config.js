@@ -11,6 +11,7 @@ const config = {
 	},
 	kit: {
 		adapter: adapter(),
+		version: { pollInterval: 60_000 },
 		experimental: {
 			remoteFunctions: true
 		}

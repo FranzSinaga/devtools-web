@@ -7,12 +7,22 @@
 
 	import { ModeWatcher } from 'mode-watcher';
 	import { dev } from '$app/environment';
+	import { updated } from '$app/state';
+	import { toast } from 'svelte-sonner';
 	import { QueryClientProvider } from '@tanstack/svelte-query';
 	import { Toaster } from '$lib/components/ui/sonner';
 	import ScreenIndicator from '$lib/components/screen-indicator.svelte';
 	import * as Tooltip from '$lib/components/ui/tooltip/index.js';
 
 	let { children, data } = $props();
+
+	$effect(() => {
+		if (updated.current)
+			toast('A new version is available', {
+				duration: Infinity,
+				action: { label: 'Refresh', onClick: () => location.reload() }
+			});
+	});
 </script>
 
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>

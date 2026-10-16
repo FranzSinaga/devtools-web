@@ -32,7 +32,7 @@ Uses `@sveltejs/adapter-node`. `pnpm build` writes `build/`; start it with `node
 
 Docker: `docker compose up -d --build` builds the multi-stage `Dockerfile` (`node:lts-alpine`, container port 3000) and publishes it on `127.0.0.1:4003`.
 
-CI/CD: on push to `master`, Drone (`.drone.yml`, SSH pipeline) pulls `master` on the deploy host, runs `pnpm check` and `pnpm lint` in a Node container, then rebuilds and restarts the compose service and prunes Docker. Host, user, SSH key, and app path come from Drone secrets.
+CI/CD: on push to `master`, Drone (`.drone.yml`, SSH pipeline) pulls `master` on the deploy host, runs `pnpm check` and `pnpm lint` in a Node container, then rebuilds the image and swaps the running container in place (`docker compose up -d`, no `down`) and prunes Docker. Open tabs poll `_app/version.json` every 60s and show a "Refresh" toast when a new build is live. Host, user, SSH key, and app path come from Drone secrets.
 
 ## Project layout
 
