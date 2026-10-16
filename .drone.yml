@@ -1,27 +1,51 @@
 kind: pipeline
-type: docker
+type: ssh
 name: devtools-web
 
 clone:
   disable: true
 
+server:
+  host:
+    from_secret: DEPLOY_HOST
+  user:
+    from_secret: DEPLOY_USERNAME
+  ssh_key:
+    from_secret: DEPLOY_SSH_KEY
+
 steps:
+  - name: Checkout & Pull
+    environment: &project_env
+      PROJECT_PATH:
+        from_secret: APP_DIR
+    commands:
+      - echo "=== Checkout branch and pull latest code ==="
+      - cd $PROJECT_PATH
+      - git checkout master
+      - git pull origin master
+  - name: Verify
+    environment: *project_env
+    commands:
+      - echo "=== Typecheck and lint ==="
+      - cd $PROJECT_PATH
+      - docker run --rm -v "$PWD":/app -w /app node:lts-alpine sh -c "corepack enable && pnpm install --frozen-lockfile && pnpm check && pnpm lint"
+  - name: Build
+    environment: *project_env
+    commands:
+      - echo "=== Building Application ==="
+      - cd $PROJECT_PATH
+      - docker compose build --no-cache
   - name: Deploy
-    image: appleboy/drone-ssh
-    settings:
-      host:
-        from_secret: vps_ip
-      username:
-        from_secret: ssh_user
-      port:
-        from_secret: ssh_port
-      key:
-        from_secret: ssh_private_key
-      script:
-        - cd ~/projects/devtools-web
-        - git pull origin master
-        - docker compose up -d --build
-        - docker image prune -f
+    environment: *project_env
+    commands:
+      - echo "=== Stop old service and start the new one ==="
+      - cd $PROJECT_PATH
+      - docker compose down
+      - docker compose up -d
+  - name: Cleanup
+    commands:
+      - echo "=== Cleanup the service ==="
+      - docker system prune -f
 
 trigger:
   event:
