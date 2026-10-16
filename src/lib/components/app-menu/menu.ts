@@ -5,7 +5,8 @@ import {
 	IdIcon,
 	ParagraphIcon,
 	PasswordValidationIcon,
-	Qr
+	Qr,
+	UserListIcon
 } from '@hugeicons/core-free-icons';
 
 export const menuItems = {
@@ -44,6 +45,11 @@ export const menuItems = {
 					title: 'Lorem Ipsum Generator',
 					url: '/lorem-ipsum',
 					icon: ParagraphIcon
+				},
+				{
+					title: 'Fake Data Generator',
+					url: '/fake-data',
+					icon: UserListIcon
 				}
 			]
 		}

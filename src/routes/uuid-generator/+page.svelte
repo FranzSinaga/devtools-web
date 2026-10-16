@@ -20,10 +20,14 @@
 				<Tabs.Trigger value="v1">Version 1</Tabs.Trigger>
 				<Tabs.Trigger value="v4">Version 4</Tabs.Trigger>
 				<Tabs.Trigger value="v7">Version 7</Tabs.Trigger>
+				<Tabs.Trigger value="ulid">ULID</Tabs.Trigger>
+				<Tabs.Trigger value="nanoid">NanoID</Tabs.Trigger>
 			</Tabs.List>
 			<Tabs.Content value="v1"><UuidGenerator version="v1" /></Tabs.Content>
 			<Tabs.Content value="v4"><UuidGenerator version="v4" /></Tabs.Content>
 			<Tabs.Content value="v7"><UuidGenerator version="v7" /></Tabs.Content>
+			<Tabs.Content value="ulid"><UuidGenerator version="ulid" /></Tabs.Content>
+			<Tabs.Content value="nanoid"><UuidGenerator version="nanoid" /></Tabs.Content>
 		</Tabs.Root>
 	</div>
 </Container>

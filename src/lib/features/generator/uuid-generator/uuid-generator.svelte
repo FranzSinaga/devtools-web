@@ -6,9 +6,10 @@
 	import { toast } from 'svelte-sonner';
 	import { fade } from 'svelte/transition';
 	import { v1 as uuidv1, v4 as uuidv4, v7 as uuidv7 } from 'uuid';
+	import { nanoid, ulid } from './ids';
 
 	type Props = {
-		version: 'v1' | 'v4' | 'v7';
+		version: 'v1' | 'v4' | 'v7' | 'ulid' | 'nanoid';
 	};
 	let { version = 'v4' }: Props = $props();
 
@@ -17,13 +18,13 @@
 	let uuids: string[] = $state([]);
 
 	function generateUuids(qty: number) {
-		const gen: () => string = { v1: uuidv1, v4: uuidv4, v7: uuidv7 }[version];
+		const gen: () => string = { v1: uuidv1, v4: uuidv4, v7: uuidv7, ulid, nanoid }[version];
 		uuids = Array.from({ length: qty }, () => gen());
 	}
 
 	async function copy() {
 		await navigator.clipboard.writeText(uuids.join('\n'));
-		toast.success('UUIDs successfully copied to clipboard!');
+		toast.success('IDs successfully copied to clipboard!');
 	}
 </script>
 
@@ -38,6 +39,13 @@
 		A Version 7 UUID is a universally unique identifier that is generated using a timestamp, a
 		counter and a cryptographically strong random number. Generally, Version 7 UUIDs have better
 		entropy (i.e. randomness) than Version 1 UUIDs.
+	{:else if version === 'ulid'}
+		A ULID (Universally Unique Lexicographically Sortable Identifier) is a 26-character ID made of a
+		millisecond timestamp and 80 random bits, encoded in Crockford base32. ULIDs sort by creation
+		time and are shorter than UUIDs.
+	{:else if version === 'nanoid'}
+		A NanoID is a compact, URL-safe random ID. The default 21 characters from a 64-symbol alphabet
+		give a collision probability similar to UUID v4, using a secure random number generator.
 	{/if}
 </p>
 
@@ -47,7 +55,7 @@
 			bind:value={qty}
 			id="quantity"
 			label="Quantity"
-			placeholder="UUID Quantity"
+			placeholder="Quantity"
 			max={MAX_QTY}
 			handleInput={() => generateUuids(Number(qty))}
 		/>
@@ -60,7 +68,7 @@
 
 	<div class="space-y-2">
 		<div class="flex w-full items-center justify-between">
-			<p>UUIDs</p>
+			<p>Result</p>
 			<div class="flex gap-2">
 				<Button variant="outline" size="icon" disabled={uuids.length <= 0} onclick={copy}>
 					<HugeiconsIcon icon={Copy} />
