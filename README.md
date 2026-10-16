@@ -24,7 +24,15 @@ pnpm lint      # prettier --check + eslint
 pnpm format    # prettier --write
 ```
 
-No test runner is configured. Deployment uses `@sveltejs/adapter-auto`; swap the adapter in `svelte.config.js` for your target.
+No test runner is configured.
+
+## Deployment
+
+Uses `@sveltejs/adapter-node`. `pnpm build` writes `build/`; start it with `node build` (port from `PORT`).
+
+Docker: `docker compose up -d --build` builds the multi-stage `Dockerfile` (`node:lts-alpine`, container port 3000) and publishes it on `127.0.0.1:4003`.
+
+CI/CD: on push to `master`, Drone (`.drone.yml`, SSH pipeline) pulls `master` on the deploy host, runs `pnpm check` and `pnpm lint` in a Node container, then rebuilds and restarts the compose service and prunes Docker. Host, user, SSH key, and app path come from Drone secrets.
 
 ## Project layout
 
