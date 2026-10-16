@@ -7,7 +7,8 @@
 
 	import { ModeWatcher } from 'mode-watcher';
 	import { dev } from '$app/environment';
-	import { updated } from '$app/state';
+	import { page, updated } from '$app/state';
+	import { menuItems } from '$lib/components/app-menu/menu';
 	import { toast } from 'svelte-sonner';
 	import { QueryClientProvider } from '@tanstack/svelte-query';
 	import { Toaster } from '$lib/components/ui/sonner';
@@ -15,6 +16,14 @@
 	import * as Tooltip from '$lib/components/ui/tooltip/index.js';
 
 	let { children, data } = $props();
+
+	const tools = menuItems.navMain.flatMap((item) => item.items ?? []);
+	const tool = $derived(tools.find((t) => t.url === page.url.pathname));
+	const title = $derived(tool ? `${tool.title} | DevTools` : 'DevTools');
+	const description = $derived(
+		tool?.description ??
+			'A collection of small developer tools: UUID, QR, password, hash, lorem ipsum, and fake data generators. Everything runs in your browser.'
+	);
 
 	$effect(() => {
 		if (updated.current)
@@ -25,7 +34,11 @@
 	});
 </script>
 
-<svelte:head><link rel="icon" href={favicon} /></svelte:head>
+<svelte:head>
+	<link rel="icon" href={favicon} />
+	<title>{title}</title>
+	<meta name="description" content={description} />
+</svelte:head>
 
 <ModeWatcher modeStorageKey="app-mode" disableHeadScriptInjection={true} />
 <Toaster position="bottom-center" />
