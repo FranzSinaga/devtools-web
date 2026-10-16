@@ -1,0 +1,15 @@
+services:
+  devtools-web:
+    build: .
+    container_name: devtools-web
+    image: devtools-web:latest
+    ports:
+      - '127.0.0.1:4003:3000'
+    networks:
+      - net-devtools
+    restart: unless-stopped
+
+networks:
+  net-devtools:
+    name: net-devtools
+    driver: bridge

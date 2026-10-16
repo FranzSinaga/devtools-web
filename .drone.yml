@@ -1,0 +1,30 @@
+kind: pipeline
+type: docker
+name: devtools-web
+
+clone:
+  disable: true
+
+steps:
+  - name: Deploy
+    image: appleboy/drone-ssh
+    settings:
+      host:
+        from_secret: vps_ip
+      username:
+        from_secret: ssh_user
+      port:
+        from_secret: ssh_port
+      key:
+        from_secret: ssh_private_key
+      script:
+        - cd ~/projects/devtools-web
+        - git pull origin master
+        - docker compose up -d --build
+        - docker image prune -f
+
+trigger:
+  event:
+    - push
+  branch:
+    - master
