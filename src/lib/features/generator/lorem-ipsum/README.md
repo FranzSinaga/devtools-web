@@ -17,4 +17,3 @@ Generates placeholder text by paragraphs, sentences, or words. Route: `/lorem-ip
 ## Limitations
 
 - Output is plain text only (no HTML `<p>` wrapping).
-- No fake data (names, emails, addresses).

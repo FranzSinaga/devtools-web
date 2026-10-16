@@ -2,7 +2,7 @@
 
 A collection of small developer tools in one SvelteKit app. Generators run entirely in the browser; nothing is sent to a server.
 
-Tools: UUID, QR, password, and hash generators. See [ROADMAP.md](ROADMAP.md) for what's shipped and planned.
+Tools: UUID (plus ULID/NanoID), QR, password, hash, Lorem Ipsum, and fake data generators. See [ROADMAP.md](ROADMAP.md) for what's shipped and planned.
 
 ## Quick start
 
