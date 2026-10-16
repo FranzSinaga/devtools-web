@@ -1,7 +1,7 @@
 services:
   devtools-web:
     build: .
-    container_name: devtools-web
+    container_name: web-devtools
     image: devtools-web:latest
     ports:
       - '127.0.0.1:4003:3000'
