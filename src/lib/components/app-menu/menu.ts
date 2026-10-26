@@ -5,6 +5,7 @@ import {
 	ExchangeIcon,
 	FingerPrintIcon,
 	IdIcon,
+	KeyIcon,
 	Link01Icon,
 	ParagraphIcon,
 	PasswordValidationIcon,
@@ -83,6 +84,12 @@ export const menuItems = {
 					url: '/url-encoder',
 					description: 'Percent-encode and decode URL components locally in your browser.',
 					icon: Link01Icon
+				},
+				{
+					title: 'JWT Decoder',
+					url: '/jwt-decoder',
+					description: 'Decode JSON Web Token headers, payloads, and expiry times in your browser.',
+					icon: KeyIcon
 				}
 			]
 		}

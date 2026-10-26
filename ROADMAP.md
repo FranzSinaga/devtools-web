@@ -26,7 +26,7 @@
 
 - [x] Base64 (text & file)
 - [x] URL Encode/Decode
-- [ ] JWT Decoder
+- [x] JWT Decoder
 - [ ] HTML Entities
 
 ## Formatter / Converter
