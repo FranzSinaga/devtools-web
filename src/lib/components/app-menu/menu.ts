@@ -1,6 +1,8 @@
 import {
+	BinaryCodeIcon,
 	DashboardSquareIcon,
 	EngineIcon,
+	ExchangeIcon,
 	FingerPrintIcon,
 	IdIcon,
 	ParagraphIcon,
@@ -61,6 +63,19 @@ export const menuItems = {
 					description:
 						'Generate realistic fake people with names, emails, and addresses for testing.',
 					icon: UserListIcon
+				}
+			]
+		},
+		{
+			title: 'Encoder / Decoder',
+			url: '#',
+			icon: ExchangeIcon,
+			items: [
+				{
+					title: 'Base64',
+					url: '/base64',
+					description: 'Encode and decode Base64 text, or convert files to Base64 and data URLs.',
+					icon: BinaryCodeIcon
 				}
 			]
 		}

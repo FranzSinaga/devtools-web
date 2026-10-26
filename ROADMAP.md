@@ -24,7 +24,7 @@
 
 ## Encoder / Decoder
 
-- [ ] Base64 (text & file)
+- [x] Base64 (text & file)
 - [ ] URL Encode/Decode
 - [ ] JWT Decoder
 - [ ] HTML Entities
