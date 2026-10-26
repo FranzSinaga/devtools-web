@@ -1,10 +1,7 @@
 <script lang="ts">
-	import Button from '$lib/components/ui/button/button.svelte';
+	import CopyRow from '$lib/components/copy-row.svelte';
 	import Label from '$lib/components/ui/label/label.svelte';
 	import Textarea from '$lib/components/ui/textarea/textarea.svelte';
-	import { Copy } from '@hugeicons/core-free-icons';
-	import { HugeiconsIcon } from '@hugeicons/svelte';
-	import { toast } from 'svelte-sonner';
 	import { decodeJwt } from './jwt';
 
 	let token = $state('');
@@ -35,11 +32,6 @@
 		})
 	);
 	const exp = $derived(times.find((t) => t.claim === 'exp'));
-
-	async function copy(label: string, value: string) {
-		await navigator.clipboard.writeText(value);
-		toast.success(`${label} successfully copied to clipboard!`);
-	}
 </script>
 
 <div class="space-y-4">
@@ -58,15 +50,7 @@
 	</fieldset>
 
 	{#each sections as { label, value } (label)}
-		<div class="space-y-2">
-			<div class="flex w-full items-center justify-between">
-				<p>{label}</p>
-				<Button variant="outline" size="icon" onclick={() => copy(label, value)}>
-					<HugeiconsIcon icon={Copy} />
-				</Button>
-			</div>
-			<pre class="overflow-x-auto border px-2 py-2 font-mono text-sm">{value}</pre>
-		</div>
+		<CopyRow {label} {value} class="overflow-x-auto break-normal whitespace-pre" />
 	{/each}
 
 	{#if times.length}
