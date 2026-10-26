@@ -1,6 +1,10 @@
 import {
 	BinaryCodeIcon,
+	BracesIcon,
+	CaseSensitiveIcon,
+	Clock01Icon,
 	CodeIcon,
+	ColorPickerIcon,
 	DashboardSquareIcon,
 	EngineIcon,
 	ExchangeIcon,
@@ -8,6 +12,7 @@ import {
 	IdIcon,
 	KeyIcon,
 	Link01Icon,
+	MagicWand01Icon,
 	ParagraphIcon,
 	PasswordValidationIcon,
 	Qr,
@@ -97,6 +102,39 @@ export const menuItems = {
 					url: '/html-entities',
 					description: 'Escape text into HTML entities and decode entities back to characters.',
 					icon: CodeIcon
+				}
+			]
+		},
+		{
+			title: 'Formatter / Converter',
+			url: '#',
+			icon: MagicWand01Icon,
+			items: [
+				{
+					title: 'JSON Formatter',
+					url: '/json-formatter',
+					description: 'Validate, pretty-print, and minify JSON locally in your browser.',
+					icon: BracesIcon
+				},
+				{
+					title: 'Timestamp Converter',
+					url: '/timestamp-converter',
+					description:
+						'Convert Unix timestamps to ISO, UTC, and local dates, and dates back to timestamps.',
+					icon: Clock01Icon
+				},
+				{
+					title: 'Color Converter',
+					url: '/color-converter',
+					description: 'Convert CSS colors between HEX, RGB, HSL, and OKLCH in your browser.',
+					icon: ColorPickerIcon
+				},
+				{
+					title: 'Case Converter',
+					url: '/case-converter',
+					description:
+						'Convert text between camelCase, PascalCase, snake_case, kebab-case, and more.',
+					icon: CaseSensitiveIcon
 				}
 			]
 		}

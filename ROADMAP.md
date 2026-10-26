@@ -31,10 +31,10 @@
 
 ## Formatter / Converter
 
-- [ ] JSON Formatter & Validator
-- [ ] Timestamp Converter
-- [ ] Color Converter (HEX/RGB/HSL/OKLCH)
-- [ ] Case Converter
+- [x] JSON Formatter & Validator
+- [x] Timestamp Converter
+- [x] Color Converter (HEX/RGB/HSL/OKLCH)
+- [x] Case Converter
 
 ## Cross-tool
 

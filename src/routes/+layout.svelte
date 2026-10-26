@@ -22,7 +22,7 @@
 	const title = $derived(tool ? `${tool.title} | DevTools` : 'DevTools');
 	const description = $derived(
 		tool?.description ??
-			'A collection of small developer tools: UUID, QR, password, hash, lorem ipsum, and fake data generators, plus Base64, URL, JWT, and HTML entity encoders/decoders. Everything runs in your browser.'
+			'A collection of small developer tools: UUID, QR, password, hash, lorem ipsum, and fake data generators, plus Base64, URL, JWT, and HTML entity encoders/decoders; a JSON formatter and timestamp, color, and case converters. Everything runs in your browser.'
 	);
 
 	$effect(() => {
