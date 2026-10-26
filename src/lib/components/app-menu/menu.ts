@@ -5,6 +5,7 @@ import {
 	ExchangeIcon,
 	FingerPrintIcon,
 	IdIcon,
+	Link01Icon,
 	ParagraphIcon,
 	PasswordValidationIcon,
 	Qr,
@@ -76,6 +77,12 @@ export const menuItems = {
 					url: '/base64',
 					description: 'Encode and decode Base64 text, or convert files to Base64 and data URLs.',
 					icon: BinaryCodeIcon
+				},
+				{
+					title: 'URL Encode/Decode',
+					url: '/url-encoder',
+					description: 'Percent-encode and decode URL components locally in your browser.',
+					icon: Link01Icon
 				}
 			]
 		}
