@@ -1,5 +1,6 @@
 import {
 	BinaryCodeIcon,
+	CodeIcon,
 	DashboardSquareIcon,
 	EngineIcon,
 	ExchangeIcon,
@@ -90,6 +91,12 @@ export const menuItems = {
 					url: '/jwt-decoder',
 					description: 'Decode JSON Web Token headers, payloads, and expiry times in your browser.',
 					icon: KeyIcon
+				},
+				{
+					title: 'HTML Entities',
+					url: '/html-entities',
+					description: 'Escape text into HTML entities and decode entities back to characters.',
+					icon: CodeIcon
 				}
 			]
 		}
