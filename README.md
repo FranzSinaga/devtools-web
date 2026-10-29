@@ -6,7 +6,7 @@ Tools: UUID (plus ULID/NanoID), QR, password, hash, Lorem Ipsum, and fake data g
 
 ## Quick start
 
-Requires Node and pnpm (`engine-strict=true`).
+Requires Node 24.22.1 (pinned in `package.json` `engines`) and pnpm 10.24.0 (`engine-strict=true`).
 
 ```sh
 pnpm install
@@ -30,7 +30,7 @@ No test runner is configured.
 
 Uses `@sveltejs/adapter-node`. `pnpm build` writes `build/`; start it with `node build` (port from `PORT`).
 
-Docker: `docker compose up -d --build` builds the multi-stage `Dockerfile` (`node:lts-alpine`, container port 3000) and publishes it on `127.0.0.1:4003`.
+Docker: `docker compose up -d --build` builds the multi-stage `Dockerfile` (`node:24.22.1-alpine`, container port 3000) and publishes it on `127.0.0.1:4003`.
 
 CI/CD: on push to `master`, Drone (`.drone.yml`, SSH pipeline) pulls `master` on the deploy host, runs `pnpm check` and `pnpm lint` in a Node container, then rebuilds the image and swaps the running container in place (`docker compose up -d`, no `down`) and prunes Docker. Open tabs poll `_app/version.json` every 60s and show a "Refresh" toast when a new build is live. Host, user, SSH key, and app path come from Drone secrets.
 

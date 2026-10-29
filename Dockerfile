@@ -1,4 +1,4 @@
-FROM node:lts-alpine AS builder
+FROM node:24.22.1-alpine AS builder
 WORKDIR /app
 
 RUN corepack enable
@@ -10,7 +10,7 @@ COPY . .
 RUN pnpm build
 RUN pnpm prune --prod
 
-FROM node:lts-alpine
+FROM node:24.22.1-alpine
 WORKDIR /app
 ENV NODE_ENV=production PORT=3000
 
