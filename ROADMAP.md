@@ -38,5 +38,5 @@
 
 ## Cross-tool
 
-- [ ] Command palette (⌘K)
-- [ ] Tool history
+- [x] Command palette (⌘K)
+- [x] Tool history (recently used tools on the dashboard and in the palette)

@@ -14,6 +14,8 @@
 	import { Toaster } from '$lib/components/ui/sonner';
 	import ScreenIndicator from '$lib/components/screen-indicator.svelte';
 	import * as Tooltip from '$lib/components/ui/tooltip/index.js';
+	import { recordVisit } from '$lib/features/dashboard/history.svelte';
+	import { untrack } from 'svelte';
 
 	let { children, data } = $props();
 
@@ -23,6 +25,11 @@
 		tool?.description ??
 			'A collection of small developer tools: UUID, QR, password, hash, lorem ipsum, and fake data generators, plus Base64, URL, JWT, and HTML entity encoders/decoders; a JSON formatter and timestamp, color, and case converters. Everything runs in your browser.'
 	);
+
+	$effect(() => {
+		const url = tool?.url;
+		if (url) untrack(() => recordVisit(url));
+	});
 
 	$effect(() => {
 		if (updated.current)

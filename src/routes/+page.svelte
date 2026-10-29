@@ -7,7 +7,7 @@
 <Container class="space-y-2">
 	<Title>Dashboard</Title>
 	<p class="text-sm text-muted-foreground">
-		Your favorite tools in one place. Favorites are saved in this browser only.
+		Your favorite and recently used tools in one place, saved in this browser only.
 	</p>
 	<Dashboard />
 </Container>

@@ -1,6 +1,6 @@
 # Dashboard
 
-Home page (route: `/`) listing the tools the user has starred.
+Home page (route: `/`) listing the tools the user has starred and the ones they used recently.
 
 ## How it works
 
@@ -10,15 +10,17 @@ Home page (route: `/`) listing the tools the user has starred.
   - `Title`, which looks up the current tool from `page.url.pathname` in `tools` (`menu.ts`), so tool pages need no changes;
   - each dashboard card.
 - `dashboard.svelte` renders starred tools as cards in menu order (icon, title, description), or an empty state.
+- `history.svelte.ts` keeps the last 6 opened tool URLs (most recent first) in `localStorage` (`tool-history`). The root layout calls `recordVisit(url)` whenever the path matches a tool in `tools`. The dashboard shows them under "Recently used" with a Clear button; the command palette (`app-menu/command-palette.svelte`, ⌘K / Ctrl+K) lists them as a "Recent" group.
 
 ## Files
 
 - `favorites.svelte.ts`: `favorites`, `toggleFavorite(url)`.
 - `favorite-toggle.svelte`: star button (`url`, `title`, `size`, `class`).
-- `dashboard.svelte`: favorites grid / empty state.
+- `history.svelte.ts`: `history`, `recordVisit(url)`, `clearHistory()`.
+- `dashboard.svelte`: favorites grid / empty state, recently used list.
 
 ## Limitations
 
-- Favorites live in this browser only; no sync across devices or tabs (another tab picks up changes on reload).
-- If storage is blocked, favorites work until reload.
+- Favorites and history live in this browser only; no sync across devices or tabs (another tab picks up changes on reload).
+- If storage is blocked, favorites and history work until reload.
 - A tool must be a nested entry in `menu.ts` to be starrable; URLs of removed tools stay in storage but are ignored.

@@ -3,6 +3,7 @@
 	import * as Select from '../ui/select/index';
 	import Separator from '../ui/separator/separator.svelte';
 	import * as Sidebar from '../ui/sidebar/index';
+	import CommandPalette from './command-palette.svelte';
 
 	type ThemeValue = 'dark' | 'light' | 'system';
 	let value = $state<ThemeValue>(userPrefersMode.current ?? 'system');
@@ -23,6 +24,7 @@
 		<div class="flex items-center gap-2">
 			<Sidebar.Trigger class="-ms-1 cursor-pointer hover:bg-background" />
 			<Separator orientation="vertical" class="me-2 data-[orientation=vertical]:h-4" />
+			<CommandPalette />
 		</div>
 		<Select.Root type="single" bind:value onValueChange={(val) => setMode(val as ThemeValue)}>
 			<Select.Trigger class="w-[180px]">
