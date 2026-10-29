@@ -21,6 +21,6 @@ Home page (route: `/`) listing the tools the user has starred and the ones they 
 
 ## Limitations
 
-- Favorites and history live in this browser only; no sync across devices or tabs (another tab picks up changes on reload).
+- Favorites and history live in this browser only; no sync across devices or tabs. Each open tab keeps its own copy and the last one to write wins.
 - If storage is blocked, favorites and history work until reload.
 - A tool must be a nested entry in `menu.ts` to be starrable; URLs of removed tools stay in storage but are ignored.

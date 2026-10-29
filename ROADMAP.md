@@ -5,6 +5,7 @@
 - [x] Favorite tools (dashboard shows the tools the user has favorited)
   - [x] Star toggle in the sidebar menu
   - [x] Star toggle in each tool page's title section
+  - [x] Star toggle on each dashboard card
 
 > Further dashboard features are still being planned.
 
@@ -24,9 +25,11 @@
 
 ## Encoder / Decoder
 
-- [x] Base64 (text & file)
+- [x] Base64
+  - [x] Text encode/decode
+  - [x] File to Base64 / data URL
 - [x] URL Encode/Decode
-- [x] JWT Decoder
+- [x] JWT Decoder (no signature verification)
 - [x] HTML Entities
 
 ## Formatter / Converter
@@ -38,5 +41,5 @@
 
 ## Cross-tool
 
-- [x] Command palette (⌘K)
+- [x] Command palette (⌘K / Ctrl+K, or the search button in the header)
 - [x] Tool history (recently used tools on the dashboard and in the palette)

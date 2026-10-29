@@ -2,7 +2,7 @@
 
 A collection of small developer tools in one SvelteKit app. Every tool runs entirely in the browser; nothing is sent to a server.
 
-Tools: UUID (plus ULID/NanoID), QR, password, hash, Lorem Ipsum, and fake data generators; Base64 (text and file), URL, JWT, and HTML entity encoders/decoders; JSON formatter and timestamp, color, and case converters. The dashboard shows the tools you star (favorites are kept in `localStorage`). See [ROADMAP.md](ROADMAP.md) for what's shipped and planned.
+Tools: UUID (plus ULID/NanoID), QR, password, hash, Lorem Ipsum, and fake data generators; Base64 (text and file), URL, JWT, and HTML entity encoders/decoders; JSON formatter and timestamp, color, and case converters. The dashboard shows the tools you star and the ones you used recently; ⌘K / Ctrl+K opens a command palette to jump to any tool. Favorites and history are kept in `localStorage`. See [ROADMAP.md](ROADMAP.md) for what's shipped and planned.
 
 ## Quick start
 
@@ -40,7 +40,9 @@ CI/CD: on push to `master`, Drone (`.drone.yml`, SSH pipeline) pulls `master` on
 src/
   routes/<tool>/+page.svelte        thin page: title, description, feature component
   lib/features/<group>/<feature>/   feature component, logic, README.md
-  lib/components/app-menu/menu.ts   sidebar entries
+  lib/features/dashboard/           dashboard, favorites, recently used history
+  lib/components/app-menu/          sidebar, header, command palette; menu.ts lists the tools
+  lib/components/                   shared components (Container, Title, CopyRow, ...)
   lib/components/ui/                shadcn-svelte generated components
 ```
 
