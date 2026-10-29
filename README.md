@@ -2,7 +2,7 @@
 
 A collection of small developer tools in one SvelteKit app. Every tool runs entirely in the browser; nothing is sent to a server.
 
-Tools: UUID (plus ULID/NanoID), QR, password, hash, Lorem Ipsum, and fake data generators; Base64 (text and file), URL, JWT, and HTML entity encoders/decoders; JSON formatter and timestamp, color, and case converters. See [ROADMAP.md](ROADMAP.md) for what's shipped and planned.
+Tools: UUID (plus ULID/NanoID), QR, password, hash, Lorem Ipsum, and fake data generators; Base64 (text and file), URL, JWT, and HTML entity encoders/decoders; JSON formatter and timestamp, color, and case converters. The dashboard shows the tools you star (favorites are kept in `localStorage`). See [ROADMAP.md](ROADMAP.md) for what's shipped and planned.
 
 ## Quick start
 

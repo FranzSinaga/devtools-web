@@ -3,6 +3,7 @@
 	import { HugeiconsIcon, type IconSvgElement } from '@hugeicons/svelte';
 	import * as Collapsible from '../ui/collapsible/index';
 	import { ChevronRight } from '@hugeicons/core-free-icons';
+	import FavoriteToggle from '$lib/features/dashboard/favorite-toggle.svelte';
 
 	let {
 		items,
@@ -50,7 +51,7 @@
 									<Sidebar.MenuSub>
 										{#each item.items ?? [] as subItem (subItem.title)}
 											<Sidebar.MenuSubItem>
-												<Sidebar.MenuSubButton>
+												<Sidebar.MenuSubButton class="pr-7">
 													{#snippet child({ props })}
 														<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
 														<a href={subItem.url} {...props}>
@@ -62,6 +63,12 @@
 														</a>
 													{/snippet}
 												</Sidebar.MenuSubButton>
+												<FavoriteToggle
+													url={subItem.url}
+													title={subItem.title}
+													size={14}
+													class="absolute top-1 right-1 size-5 group-focus-within/menu-sub-item:opacity-100 group-hover/menu-sub-item:opacity-100 aria-pressed:opacity-100 md:opacity-0"
+												/>
 											</Sidebar.MenuSubItem>
 										{/each}
 									</Sidebar.MenuSub>

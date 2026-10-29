@@ -140,3 +140,5 @@ export const menuItems = {
 		}
 	]
 };
+
+export const tools = menuItems.navMain.flatMap((item) => item.items ?? []);

@@ -2,9 +2,9 @@
 
 ## Dashboard
 
-- [ ] Favorite tools (dashboard shows the tools the user has favorited)
-  - [ ] Star toggle in the sidebar menu
-  - [ ] Star toggle in each tool page's title section
+- [x] Favorite tools (dashboard shows the tools the user has favorited)
+  - [x] Star toggle in the sidebar menu
+  - [x] Star toggle in each tool page's title section
 
 > Further dashboard features are still being planned.
 

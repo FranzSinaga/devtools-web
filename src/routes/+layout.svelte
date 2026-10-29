@@ -8,7 +8,7 @@
 	import { ModeWatcher } from 'mode-watcher';
 	import { dev } from '$app/environment';
 	import { page, updated } from '$app/state';
-	import { menuItems } from '$lib/components/app-menu/menu';
+	import { tools } from '$lib/components/app-menu/menu';
 	import { toast } from 'svelte-sonner';
 	import { QueryClientProvider } from '@tanstack/svelte-query';
 	import { Toaster } from '$lib/components/ui/sonner';
@@ -17,7 +17,6 @@
 
 	let { children, data } = $props();
 
-	const tools = menuItems.navMain.flatMap((item) => item.items ?? []);
 	const tool = $derived(tools.find((t) => t.url === page.url.pathname));
 	const title = $derived(tool ? `${tool.title} | DevTools` : 'DevTools');
 	const description = $derived(
